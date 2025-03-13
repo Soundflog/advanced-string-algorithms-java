@@ -10,6 +10,7 @@ class Main {
         // Исходный текст
         String text = "This is a test message containing some bad and inappropriate words.";
 
+        // Conflict for demostartion
         // Запрещённые слова
         String[] bannedWords = {"bad", "inappropriate"};
 
