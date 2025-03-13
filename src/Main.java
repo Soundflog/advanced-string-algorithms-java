@@ -30,5 +30,7 @@ class Main {
         } else {
             System.out.println("No inappropriate words found.");
         }
+
+        System.out.println("Verify KMP: " + matcher.verifyKMP(text, bannedWords[0]));
     }
 }
