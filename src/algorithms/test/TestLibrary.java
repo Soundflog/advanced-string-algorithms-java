@@ -1,6 +1,6 @@
-package stringalgorithms.test;
+package algorithms.test;
 
-import stringalgorithms.*;
+import algorithms.*;
 
 import java.util.List;
 
