@@ -7,39 +7,58 @@ package algorithms;
           \result[i] == j));
 */
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class RabinKarp {
+    // Опорные константы для хеширования
+    private final int base = 256;
+    private final int mod = 101;
 
-    public List<Integer> search(String text, String pattern) {
-        List<Integer> result = new ArrayList<>();
+    /**
+     * Поиск первого вхождения шаблона в тексте с оптимизированным пересчётом хеша.
+     * @param text Исходный текст.
+     * @param pattern Искомый шаблон.
+     * @return Индекс первого вхождения шаблона или -1, если совпадения не найдены.
+     */
+    public int search(String text, String pattern) {
+        Objects.requireNonNull(text, "Text cannot be null");
+        Objects.requireNonNull(pattern, "Pattern cannot be null");
+
         int n = text.length();
         int m = pattern.length();
-        if (m > n) return result;
+        if (m > n || m == 0) return -1;
 
-        int base = 256;
-        int mod = 101;
-        int hpattern = 0, htext = 0, h = 1;
+        int h = 1; // base^(m-1) % mod
+        int patternHash = 0, textHash = 0;
 
+        // Предвычисление значения h для оптимизации пересчёта хеша
         for (int i = 0; i < m - 1; i++) {
             h = (h * base) % mod;
         }
 
+        // Вычисление начальных хешей для шаблона и первого окна текста
         for (int i = 0; i < m; i++) {
-            hpattern = (base * hpattern + pattern.charAt(i)) % mod;
-            htext = (base * htext + text.charAt(i)) % mod;
+            patternHash = (base * patternHash + pattern.charAt(i)) % mod;
+            textHash = (base * textHash + text.charAt(i)) % mod;
         }
 
-        for (int i = 0; i <= text.length() - pattern.length(); i++) {
-            if (hpattern == htext && text.substring(i, i + pattern.length()).equals(pattern)) {
-                result.add(i);
+        // Проход по тексту с использованием скользящего окна
+        for (int i = 0; i <= n - m; i++) {
+            // Сравнение хешей
+            if (patternHash == textHash) {
+                // Если хеши совпадают, выполняется посимвольная проверка
+                if (text.regionMatches(i, pattern, 0, m)) {
+                    return i;
+                }
             }
-            if (i < text.length() - pattern.length()) {
-                htext = (base * (htext - text.charAt(i) * h) + text.charAt(i + pattern.length())) % mod;
-                htext = (htext + mod) % mod;
+            // Пересчёт хеша для следующего окна
+            if (i < n - m) {
+                textHash = (base * (textHash - text.charAt(i) * h) + text.charAt(i + m)) % mod;
+                if (textHash < 0) {
+                    textHash += mod;
+                }
             }
         }
-        return result;
+        return -1;
     }
 }
