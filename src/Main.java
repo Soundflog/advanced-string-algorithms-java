@@ -1,7 +1,4 @@
-import algorithms.StringMatcher;
-
-import java.util.List;
-
+import stringalgorithms.StringMatcher;
 
 public class Main {
     /**
@@ -18,7 +15,7 @@ public class Main {
 
         // Замер времени работы алгоритма Рабина–Карпа
         long start = System.currentTimeMillis();
-        List<Integer> indexRK = matcher.rabinKarp(text, pattern);
+        int indexRK = matcher.rabinKarp(text, pattern);
         long durationRK = System.currentTimeMillis() - start;
         System.out.println("Rabin-Karp: шаблон найден на позиции " + indexRK + ", время: " + durationRK + " мс.");
 
@@ -30,7 +27,7 @@ public class Main {
 
         // Замер времени работы алгоритма Кнута–Морриса–Пратта
         start = System.currentTimeMillis();
-        List<Integer> indexKMP = matcher.knuthMorrisPratt(text, pattern);
+        int indexKMP = matcher.knuthMorrisPratt(text, pattern);
         long durationKMP = System.currentTimeMillis() - start;
         System.out.println("KMP: шаблон найден на позиции " + indexKMP + ", время: " + durationKMP + " мс.");
     }
