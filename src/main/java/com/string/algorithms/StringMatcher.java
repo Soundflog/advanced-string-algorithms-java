@@ -1,5 +1,4 @@
-package algorithms;
-
+package com.string.algorithms;
 
 public class StringMatcher {
     private final RabinKarp rabinKarp = new RabinKarp();

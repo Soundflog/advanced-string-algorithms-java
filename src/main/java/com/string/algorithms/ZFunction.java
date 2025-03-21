@@ -1,4 +1,4 @@
-package algorithms;
+package com.string.algorithms;
 
 public class ZFunction {
     /**

@@ -1,4 +1,4 @@
-package algorithms;
+package com.string.algorithms;
 
 /*@
   requires text != null && pattern != null;
