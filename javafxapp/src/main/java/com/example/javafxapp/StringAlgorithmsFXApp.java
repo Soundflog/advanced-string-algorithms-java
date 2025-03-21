@@ -57,32 +57,36 @@ public class StringAlgorithmsFXApp extends Application {
                 String selectedAlgorithm = algorithmComboBox.getValue();
                 StringMatcher matcher = new StringMatcher();
                 String output;
-                if ("Рабин–Карп".equals(selectedAlgorithm)) {
-                    String pattern = patternField.getText();
-                    if (pattern == null || pattern.trim().isEmpty()) {
-                        throw new IllegalArgumentException("Для алгоритма Рабина–Карпа шаблон не может быть пустым.");
+                switch (selectedAlgorithm) {
+                    case "Рабин–Карп" -> {
+                        String pattern = patternField.getText();
+                        if (pattern == null || pattern.trim().isEmpty()) {
+                            throw new IllegalArgumentException("Для алгоритма Рабина–Карпа шаблон не может быть пустым.");
+                        }
+                        int index = matcher.rabinKarp(text, pattern);
+                        output = (index != -1) ? "Шаблон найден на позиции: " + index : "Шаблон не найден.";
                     }
-                    int index = matcher.rabinKarp(text, pattern);
-                    output = (index != -1) ? "Шаблон найден на позиции: " + index : "Шаблон не найден.";
-                } else if ("Кнута–Моррис–Пратта".equals(selectedAlgorithm)) {
-                    String pattern = patternField.getText();
-                    if (pattern == null || pattern.trim().isEmpty()) {
-                        throw new IllegalArgumentException("Для алгоритма Кнута–Моррис–Пратта шаблон не может быть пустым.");
+                    case "Кнута–Моррис–Пратта" -> {
+                        String pattern = patternField.getText();
+                        if (pattern == null || pattern.trim().isEmpty()) {
+                            throw new IllegalArgumentException("Для алгоритма Кнута–Моррис–Пратта шаблон не может быть пустым.");
+                        }
+                        int index = matcher.knuthMorrisPratt(text, pattern);
+                        output = (index != -1) ? "Шаблон найден на позиции: " + index : "Шаблон не найден.";
                     }
-                    int index = matcher.knuthMorrisPratt(text, pattern);
-                    output = (index != -1) ? "Шаблон найден на позиции: " + index : "Шаблон не найден.";
-                } else if ("Z-функция".equals(selectedAlgorithm)) {
-                    int[] zValues = matcher.zFunction(text);
-                    output = "Z-функция: " + arrayToString(zValues);
-                } else {
-                    throw new IllegalArgumentException("Выбран неизвестный алгоритм: " + selectedAlgorithm);
+                    case "Z-функция" -> {
+                        int[] zValues = matcher.zFunction(text);
+                        output = "Z-функция: " + arrayToString(zValues);
+                    }
+                    case null, default ->
+                            throw new IllegalArgumentException("Выбран неизвестный алгоритм: " + selectedAlgorithm);
                 }
                 resultLabel.setText(output);
             } catch (IllegalArgumentException ex) {
                 showAlert(Alert.AlertType.WARNING, "Ошибка ввода", ex.getMessage());
             } catch (Exception ex) {
                 showAlert(Alert.AlertType.ERROR, "Системная ошибка", "Произошла системная ошибка: " + ex.getMessage());
-                ex.printStackTrace();
+                ex.getMessage();
             }
         });
 
