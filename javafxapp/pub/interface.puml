@@ -1,0 +1,33 @@
+@startuml
+title Диаграмма интерфейса JavaFX приложения
+
+package "Пользовательский интерфейс" {
+    [TextArea] as TA
+    [TextField] as TF
+    [ComboBox] as CB
+    [Button] as Btn
+    [Label: Explanation] as LExp
+    [Label: Result] as LRes
+}
+
+package "Библиотека строковых алгоритмов" {
+    [RabinKarp] as RK
+    [ZFunction] as ZF
+    [KnuthMorrisPratt] as KMP
+    [Button] as Btn
+    [Label: Explanation] as LExp
+    [Label: Result] as LRes
+}
+
+[JavaFXApp] --> TA : "Ввод текста"
+[JavaFXApp] --> TF : "Ввод шаблона"
+[JavaFXApp] --> CB : "Выбор алгоритма"
+[JavaFXApp] --> LExp : "Отображение пояснения"
+[JavaFXApp] --> Btn : "Кнопка запуска"
+[JavaFXApp] --> LRes : "Вывод результатов"
+
+
+CB ---> RK : "Алгоритм Рабин-Карпа"
+CB ---> ZF : "Зед-функция"
+CB ---> KMP: "Кнута–Морриса–Пратта"
+@enduml
