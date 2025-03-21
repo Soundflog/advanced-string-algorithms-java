@@ -42,3 +42,4 @@ build/
 /javafxapp/.mvn/wrapper/maven-wrapper.properties
 javafxapp/mvnw
 javafxapp/mvnw.cmd
+/javafxapp/.idea
