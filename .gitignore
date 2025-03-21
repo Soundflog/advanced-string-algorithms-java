@@ -37,3 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 /.idea
+/out/artifacts/advanced_string_algorithms_java_jar/advanced-string-algorithms-java.jar
