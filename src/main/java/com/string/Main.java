@@ -1,4 +1,6 @@
-import stringalgorithms.StringMatcher;
+package com.string;
+
+import com.string.algorithms.StringMatcher;
 
 public class Main {
     /**

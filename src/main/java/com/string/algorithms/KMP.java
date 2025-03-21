@@ -1,9 +1,5 @@
-package algorithms;
+package com.string.algorithms;
 
-/**
- * @author Developer
- * @invariant text != null && pattern != null
- */
 public class KMP {
 
     /**
