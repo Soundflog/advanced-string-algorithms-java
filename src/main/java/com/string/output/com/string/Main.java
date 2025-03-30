@@ -1,9 +1,10 @@
 /*
  * Decompiled with CFR 0.152.
  */
-package com.string;
+package com.string.output.com.string;
 
-import com.string.algorithms.StringMatcher;
+
+import com.string.output.com.string.algorithms.StringMatcher;
 
 public class Main {
     public static void main(String[] args) {

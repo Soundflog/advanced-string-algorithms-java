@@ -1,7 +1,7 @@
 /*
  * Decompiled with CFR 0.152.
  */
-package com.string.algorithms;
+package com.string.output.com.string.algorithms;
 
 public class ZFunction {
     public int[] compute(String s) {
