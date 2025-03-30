@@ -1,6 +1,7 @@
 package com.string;
 
-import com.string.algorithms.StringMatcher;
+
+import com.string.output.com.string.algorithms.StringMatcher;
 
 public class Main {
     /**
